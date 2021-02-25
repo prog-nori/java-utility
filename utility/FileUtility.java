@@ -116,11 +116,7 @@ import utility.interfaces.BiFunction;
 	private static void readlinesCore(File aFile, Consumer<String> aConsumer) {
 		try {
 			BufferedReader instanceOfBufferedReader = new BufferedReader(new FileReader(aFile));
-			String aString;
-			// while使わない方向にどうにかリファクタリングできないかしら
-			while((aString = instanceOfBufferedReader.readLine()) != null) {
-				aConsumer.accept(aString);
-			}
+			instanceOfBufferedReader.lines().forEach(aConsumer::accept);
 			instanceOfBufferedReader.close();
 		} catch(FileNotFoundException anException) {
 			anException.printStackTrace();
@@ -139,11 +135,9 @@ import utility.interfaces.BiFunction;
 		try {
 			BufferedReader instanceOfBufferedReader = new BufferedReader(new FileReader(aFile));
 			AtomicInteger anAtomicInteger = new AtomicInteger();
-			String aString;
-			// while使わない方向にどうにかリファクタリングできないかしら
-			while((aString = instanceOfBufferedReader.readLine()) != null) {
+			instanceOfBufferedReader.lines().forEach(aString -> {
 				aBiFunction.accept(aString, Integer.valueOf(anAtomicInteger.getAndIncrement()));
-			}
+			});
 			instanceOfBufferedReader.close();
 		} catch(FileNotFoundException anException) {
 			anException.printStackTrace();

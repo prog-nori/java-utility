@@ -19,8 +19,9 @@ public class Example extends Object {
 	 * @param args コマンドライン引数
 	 */
 	public static void main(String[] args) {
-		(new Example()).exampleOfStringUtility(Arrays.asList(args));
-		(new Example()).exampleOfFileUtility(Arrays.asList(args));
+		Example anExample = new Example();
+		anExample.exampleOfStringUtility(Arrays.asList(args));
+		anExample.exampleOfFileUtility(Arrays.asList(args));
 		return;
 	}
 
@@ -30,7 +31,7 @@ public class Example extends Object {
 	 */
 	private void exampleOfStringUtility(List<String> aList) {
 		StringUtility aStringUtility = new StringUtility();
-		aStringUtility.join("吾輩", "は", "おっぱいである");
+		aStringUtility.join("吾輩", "は", "ちっぱいである");
 		System.out.println(aStringUtility);
 
 		StringUtility anotherStringUtility = new StringUtility("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
