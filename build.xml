@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="javaUtility" default="all" basedir=".">
+<project name="java_utility" default="all" basedir=".">
 
 	<property name="package" value="utility" />
 	<property name="version" value="1.0.0" />
 	<property name="destdir" value="classes" />
-	<property name="docdir" value="./documents" />
+	<property name="docdir" value="./docs" />
 	<property name="copyright" value="2021 KISHI Noriki. All Rights Reserved." />
+	<property name="zipname" value="./${ant.project.name}" />
 
 	<target name="compile">
 		<mkdir dir="${destdir}" />
@@ -64,5 +65,21 @@
 		<exec executable="java" spawn="false">
 			<arg line="-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar ${package}.jar" />
 		</exec>
+	</target>
+
+	<target name="clean" description="お掃除">
+		<delete dir="${destdir}" />
+		<delete dir="${docdir}" />
+		<delete file="../${zipname}.zip" />
+		<delete>
+			<fileset dir="${package}" includes="*.class" />
+		</delete>
+	</target>
+
+	<target name="zip" depends="clean" description="圧縮">
+		<delete file="../${zipname}.zip" />
+		<zip destfile="../${zipname}.zip">
+			<zipfileset dir="." prefix="${zipname}" />
+		</zip>
 	</target>
 </project>

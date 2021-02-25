@@ -9,3 +9,9 @@ test:
 
 doc:
 	$(ANT) doc
+
+clean:
+	$(ANT) clean
+
+zip:
+	$(ANT) zip

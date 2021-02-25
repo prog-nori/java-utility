@@ -22,6 +22,9 @@ public interface BiFunction<E, I> {
 	 */
 	default BiFunction<E, I> andThen(BiFunction<? super E, ? super I> after) {
 		Objects.requireNonNull(after);
-		return (E t, I i) -> { accept(t, i); after.accept(t, i); };
+		return (E t, I i) -> {
+			accept(t, i);
+			after.accept(t, i);
+		};
 	}
 }

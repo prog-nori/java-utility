@@ -18,7 +18,7 @@ import utility.interfaces.BiFunction;
  * ファイル操作における便利ツールです。
  * @author KISHI Noriki
  */
- public class FileUtility extends File implements Serializable {
+public class FileUtility extends File implements Serializable {
 
 	/**
 	 * シリアルバージョンのユニークID
