@@ -14,8 +14,15 @@ import java.util.function.Consumer;
 
 import utility.interfaces.BiFunction;
 
-public class FileUtility extends File implements Serializable {
+/**
+ * ファイル操作における便利ツールです。
+ * @author KISHI Noriki
+ */
+ public class FileUtility extends File implements Serializable {
 
+	/**
+	 * シリアルバージョンのユニークID
+	 */
 	private static final long serialVersionUID = 8531245739641223373L;
 
 	/**
@@ -43,36 +50,69 @@ public class FileUtility extends File implements Serializable {
 		super(uri);
 	}
 
+	/**
+	 * ファイルを1行ずつ読む。
+	 * @param aConsumer 1行ごとのに処理する内容。lambdaの引数には行を表すString文字列が入る。
+	 */
 	public void readlines(Consumer<String> aConsumer) {
 		FileUtility.readlinesCore(this, aConsumer);
 		return;
 	}
 
+	/**
+	 * 与えられたファイルを1行ずつ読む。
+	 * @param aFile 解読するファイルオブジェクト
+	 * @param aConsumer 1行ごとのに処理する内容。lambdaの引数には行を表すString文字列が入る。
+	 */
 	public static void readlines(File aFile, Consumer<String> aConsumer) {
 		FileUtility.readlinesCore(aFile, aConsumer);
 		return;
 	}
 
+	/**
+	 * 与えられたファイルを1行ずつ読む。
+	 * @param aFilename 解読するファイル名
+	 * @param aConsumer 1行ごとのに処理する内容。lambdaの引数には行を表すString文字列が入る。
+	 */
 	public static void readlines(String aFilename, Consumer<String> aConsumer) {
 		FileUtility.readlinesCore(new File(aFilename), aConsumer);
 		return;
 	}
 
+	/**
+	 * インデックスをつけて、ファイルを1行ずつ読む。
+	 * @param aBiFunction 1行ごとのに処理する内容。lambdaの引数には行を表すString文字列と繰り返し変数が入る。
+	 */
 	public void readlinesWithIndex(BiFunction<String, Integer> aBiFunction) {
 		FileUtility.readlinesWithIndexCore(this, aBiFunction);
 		return;
 	}
 
+	/**
+	 * 与えられたファイルを1行ずつ読む。
+	 * @param aFile 解読するファイルオブジェクト
+	 * @param aBiFunction 1行ごとのに処理する内容。lambdaの引数には行を表すString文字列と繰り返し変数が入る。
+	 */
 	public static void readlinesWithIndex(File aFile, BiFunction<String, Integer> aBiFunction) {
 		FileUtility.readlinesWithIndexCore(aFile, aBiFunction);
 		return;
 	}
 
+	/**
+	 * 与えられたファイルを1行ずつ読む。
+	 * @param aFilename 解読するファイル名
+	 * @param aBiFunction 1行ごとのに処理する内容。lambdaの引数には行を表すString文字列と繰り返し変数が入る。
+	 */
 	public static void readlinesWithIndex(String aFilename, BiFunction<String, Integer> aBiFunction) {
 		FileUtility.readlinesWithIndexCore(new File(aFilename), aBiFunction);
 		return;
 	}
 
+	/**
+	 * ファイルを解読する共通処理
+	 * @param aFile ファイルオブジェクト
+	 * @param aConsumer 1行ごとの処理を行うコンシューマ
+	 */
 	private static void readlinesCore(File aFile, Consumer<String> aConsumer) {
 		try {
 			BufferedReader instanceOfBufferedReader = new BufferedReader(new FileReader(aFile));
@@ -90,6 +130,11 @@ public class FileUtility extends File implements Serializable {
 		return;
 	}
 
+	/**
+	 * ファイルを解読する共通処理
+	 * @param aFile ファイルオブジェクト
+	 * @param aBiFunction 1行ごとの処理を行う2つの引数に対応したlambda
+	 */
 	private static void readlinesWithIndexCore(File aFile, BiFunction<String, Integer> aBiFunction) {
 		try {
 			BufferedReader instanceOfBufferedReader = new BufferedReader(new FileReader(aFile));

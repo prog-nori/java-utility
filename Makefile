@@ -7,8 +7,5 @@ all:
 test:
 	$(ANT) test
 
-# test:
-# 	sh ./MakefileDriver.sh test
-
 doc:
-	sh ./MakefileDriver.sh doc
+	$(ANT) doc
