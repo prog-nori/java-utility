@@ -28,8 +28,9 @@
 	</target>
 
 	<target name="jar" depends="compile" description="create jar file.">
+		<mkdir dir="release" />
 		<jar
-			jarfile="${package}.jar"
+			jarfile="release/${package}.jar"
 			basedir="${destdir}"
 			manifest="${package}.mf">
 		</jar>
