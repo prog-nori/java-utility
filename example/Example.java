@@ -1,4 +1,4 @@
-package javautility.example;
+package example;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,8 +13,10 @@ public class Example extends Object {
 
 	private static void exampleOfStringUtility(List<String> aList) {
 		StringUtility aStringUtility = new StringUtility();
-		aStringUtility.join("吾輩", "は", "猫である");
+		aStringUtility.join("吾輩", "は", "ちんこである");
 		System.out.println(aStringUtility);
+		StringUtility anotherStringUtility = new StringUtility("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+		System.out.println(anotherStringUtility.get(1, 3));
 		return;
 	}
 }

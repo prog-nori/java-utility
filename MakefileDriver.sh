@@ -29,6 +29,18 @@ function zip_function() {
 	tar cvzf  $TARGET.tgz $TARGET
 }
 
+function doc_function() {
+
+	if [ -d `$PWD/docs` ]; then
+		# ディレクトリが存在した場合は削除
+		rm -rf `$PWD/docs`
+	fi
+
+	javadoc -d docs ./example/utility/*.java
+
+	open -a Safari ./docs/index.html
+}
+
 
 if [ $1 == 'test' ]; then
 	# コンパイル&実行
@@ -42,4 +54,7 @@ elif [ $1 == 'test-measure' ]; then
 elif [ $1 == 'zip' ]; then
 	# tar圧縮
 	zip_function
+
+elif [ $1 == 'doc' ]; then
+	doc_function
 fi
