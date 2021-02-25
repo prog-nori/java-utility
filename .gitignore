@@ -4,4 +4,4 @@
 */release
 */*.war
 */*.ear
-./plan.md
+*/plan.md
