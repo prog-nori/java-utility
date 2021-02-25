@@ -64,7 +64,7 @@
 
 	<target name="test" depends="jar" description="test">
 		<exec executable="java" spawn="false">
-			<arg line="-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar ${package}.jar" />
+			<arg line="-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar release/${package}.jar" />
 		</exec>
 	</target>
 

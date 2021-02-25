@@ -66,10 +66,7 @@ public class Example extends Object {
 	 */
 	private void exampleOfFileUtility1() {
 		FileUtility aFileUtility = new FileUtility("./ren.txt");
-		AtomicInteger anAtomicInteger = new AtomicInteger();
-		aFileUtility.readlines(aLine -> {
-			System.out.printf("%d: %s%n", anAtomicInteger.getAndIncrement(), aLine);
-		});
+		aFileUtility.readlines(System.out::println);
 		return;
 	}
 
@@ -80,9 +77,7 @@ public class Example extends Object {
 	 */
 	private void exampleOfFileUtility2() {
 		AtomicInteger anAtomicInteger = new AtomicInteger();
-		FileUtility.readlines(new File("./ren.txt"), aLine -> {
-			System.out.printf("%d: %s%n", anAtomicInteger.getAndIncrement(), aLine);
-		});
+		FileUtility.readlines(new File("./ren.txt"), System.out::println);
 		return;
 	}
 
@@ -93,9 +88,7 @@ public class Example extends Object {
 	 */
 	private void exampleOfFileUtility3() {
 		AtomicInteger anAtomicInteger = new AtomicInteger();
-		FileUtility.readlines("./ren.txt", aLine -> {
-			System.out.printf("%d: %s%n", anAtomicInteger.getAndIncrement(), aLine);
-		});
+		FileUtility.readlines("./ren.txt", System.out::println);
 		return;
 	}
 
