@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="javaUtility" default="all" basedir=".">
+
+	<property name="package" value="javaUtility" />
+	<property name="version" value="1.0.0" />
+	<property name="destdir" value="classes" />
+
+	<target name="compile">
+		<mkdir dir="${destdir}" />
+		<javac
+			srcdir="${basedir}"
+			destdir="${destdir}"
+			includeAntRuntime="true"
+			encoding="UTF-8"
+			deprecation="on"
+			verbose="false"
+			>
+			<compilerarg value="-J-Dfile.encoding=UTF8" />
+			<compilerarg value="-Xlint:all" />
+			<classpath>
+				<pathelement location="." />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile" description="create jar file.">
+		<jar
+			jarfile="${package}.jar"
+			basedir="${destdir}"
+			manifest="${package}.mf">
+		</jar>
+	</target>
+
+	<target name="test" depends="jar" description="test">
+		<exec executable="java" spawn="false">
+			<arg line="-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar ${package}.jar" />
+		</exec>
+	</target>
+</project>
