@@ -15,3 +15,6 @@ clean:
 
 zip:
 	$(ANT) zip
+
+format:
+	sh ./MakefileDriver.sh format
