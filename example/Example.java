@@ -4,6 +4,7 @@ import utility.FileUtility;
 import utility.StringUtility;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -86,11 +87,13 @@ public class Example extends Object {
 
     /** ラムダによるファイル操作の実例4 静的メソッドを呼び出す。 exampleOfFileUtility3をインデックスに対応したメソッドを操作してみる */
     private void exampleOfFileUtility4() {
+		List<String> aList = new ArrayList<>();
         FileUtility.readlinesWithIndex(
                 "./ren.txt",
                 (aLine, anIndex) -> {
-                    System.out.printf("%d: %s%n", anIndex, aLine);
+                    aList.add(String.format("%d: %s%n", anIndex, aLine));
                 });
+		FileUtility.writelines("./output.txt", aList);
         return;
     }
 }
