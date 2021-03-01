@@ -34,7 +34,7 @@
 </div>
 
 ### これから追加ていきたい機能
-- 書き込み操作 <code style="color: red;">未実装</code>
+- 書き込み操作 <code style="color: green;">実装</code>
 - カレントディレクトリの取得 <code style="color: green;">実装</code>
 - カンマ区切りの文字列を1つのファイルパスに <code style="color: red;">未実装</code>
 - カレントディレクトリにファイルをダウンロード <code style="color: red;">未実装</code>

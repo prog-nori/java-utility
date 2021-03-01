@@ -9,12 +9,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Serializable;
 
 import java.net.URI;
+import java.net.URL;
 
 import java.util.List;
 import java.util.Objects;
@@ -141,6 +143,25 @@ public class FileUtility extends File implements Serializable {
     private static void readlinesCore(File aFile, Consumer<String> aConsumer) {
         try {
             BufferedReader instanceOfBufferedReader = new BufferedReader(new FileReader(aFile));
+            instanceOfBufferedReader.lines().forEach(aConsumer::accept);
+            instanceOfBufferedReader.close();
+        } catch (FileNotFoundException anException) {
+            anException.printStackTrace();
+        } catch (IOException anException) {
+            anException.printStackTrace();
+        }
+        return;
+    }
+
+	/**
+     * URLから情報を1行ずつ取得する
+     *
+     * @param anURL 取得元のURLオブジェクト
+     * @param aConsumer 1行ごとの処理を行うコンシューマ
+     */
+    public static void readlinesFromURL(URL anURL, Consumer<String> aConsumer) {
+        try {
+            BufferedReader instanceOfBufferedReader = new BufferedReader(new InputStreamReader(anURL.openStream()));
             instanceOfBufferedReader.lines().forEach(aConsumer::accept);
             instanceOfBufferedReader.close();
         } catch (FileNotFoundException anException) {

@@ -40,6 +40,9 @@ public class Example extends Object {
         StringUtility anotherStringUtility = new StringUtility("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         System.out.println(anotherStringUtility.get(1, 3));
 
+		StringUtility theThirdStringUtility = new StringUtility("https://www.kyoto-su.ac.jp");
+		FileUtility.writelines("./ksu-web.txt", theThirdStringUtility.getTextFromURL());
+
         return;
     }
 

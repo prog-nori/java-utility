@@ -1,7 +1,12 @@
 package utility;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URISyntaxException;
+import utility.FileUtility;
 
 /**
  * 文字列操作における便利ツールです。
@@ -47,6 +52,40 @@ public class StringUtility extends Object {
         }
         return aStringUtility.toString();
     }
+
+	/**
+	 * URLからテキストを取得する
+	 * @return 1行ずつリストされたテキスト
+	 */
+	public List<String> getTextFromURL() {
+		return this.getTextFromURL(this.toString());
+	}
+
+	/**
+	 * URLからテキストを取得する
+	 * @param aString URLを表すStringオブジェクト
+	 * @return 1行ずつリストされたテキスト
+	 */
+	public List<String> getTextFromURL(String aString) {
+		List<String> aList = new ArrayList<>();
+		try {
+			aList = this.getTextFromURL(new URL(aString));
+		} catch(MalformedURLException anException) {
+			anException.printStackTrace();
+		}
+		return aList;
+	}
+
+	/**
+	 * URLからテキストを取得する
+	 * @param anURL 対象のURL
+	 * @return 1行ずつリストされたテキスト
+	 */
+	public List<String> getTextFromURL(URL anURL) {
+		List<String> aList = new ArrayList<>();
+		FileUtility.readlinesFromURL(anURL, aList::add);
+		return aList;
+	}
 
     /**
      * 自身の末尾に文字列を結合する
