@@ -18,8 +18,10 @@ import java.io.Serializable;
 import java.net.URI;
 import java.net.URL;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
@@ -67,6 +69,20 @@ public class FileUtility extends File implements Serializable {
 	 */
 	public String getCurrrentDirectory() {
 		return System.getProperty("user.dir");
+	}
+
+	/**
+	 * パスを結合し、ファイルオブジェクトを返却する
+	 * @param strings 結合する文字列
+	 * @return 結合してできたファイルオブジェクト。なければ作成する。
+	 */
+	public static File joinPaths(String... strings) {
+		StringJoiner aStringJoiner = new StringJoiner(File.separator);
+		Arrays.asList(strings).forEach(aStringJoiner::add);
+		File aFile = new File(aStringJoiner.toString());
+		System.out.println(aFile.getAbsolutePath());
+		boolean validate = FileUtility.validateFile(aFile);
+		return aFile;
 	}
 
     /**
@@ -229,6 +245,7 @@ public class FileUtility extends File implements Serializable {
 		Condition aCondition = new Condition(() -> aFile.exists());
 		aCondition.ifFalse(() -> {
 			try {
+				System.out.println(aFile.getAbsolutePath());
 				aFile.createNewFile();
 			} catch(IOException anException) {
 				anException.printStackTrace();

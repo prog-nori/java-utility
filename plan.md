@@ -27,7 +27,7 @@
 </div>
 
 ### これから追加ていきたい機能
-- URLから文字列(テキスト)を取得する機能 <code style="color: red;">未実装</code>
+- URLから文字列(テキスト)を取得する機能 <code style="color: green;">実装</code>
 
 ## FileUtility
 <div id="Fileutility">

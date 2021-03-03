@@ -34,7 +34,7 @@ public class Example extends Object {
      */
     private void exampleOfStringUtility(List<String> aList) {
         StringUtility aStringUtility = new StringUtility();
-        aStringUtility.join("吾輩", "は", "ちっぱいである");
+        aStringUtility.join("吾輩", "は", "猫である");
         System.out.println(aStringUtility);
 
         StringUtility anotherStringUtility = new StringUtility("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
@@ -63,6 +63,8 @@ public class Example extends Object {
 
         System.out.printf("%nexampleOfIfleUtility4%n");
         this.exampleOfFileUtility4();
+
+		System.out.println(FileUtility.joinPaths("1", "2", "hoge.txt"));
 
         return;
     }
